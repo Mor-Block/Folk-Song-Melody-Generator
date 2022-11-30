@@ -1,5 +1,5 @@
 
-#Folk Song Generator
+#Folk Song Melody Generator
 
 #########################################################
 from music21 import *
