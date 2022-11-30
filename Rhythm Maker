@@ -1,0 +1,107 @@
+def make_rhythm(s):
+    "This essentially creates a rhythmic framework for pitches to be superimposed upon"
+    x = 0
+    y = random.randint(0,1) # Used to determine if motivic bars 4-8 or random
+    triple_meter = '3/4'
+    quad_meter = '4/4'
+    comp_meter = '6/8'
+    c = [triple_meter, quad_meter, comp_meter]
+    d = c[random.randint(0,2)]
+    #d = raw_input("Choose a time signature: 4/4, 3/4, or 6/8.   ") # Allows user to choose meter
+    s.insert(0, meter.TimeSignature([d])) #Randomly chooses between 3/4 and 4/4
+    if d == '4/4':
+        while x < 3:
+            thisbar = bars[random.randint(0, len(bars)-1)] #choose bar randomly
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if x == 3:
+            thisbar = fin_bars[random.randint(0, len(fin_bars)-1)]
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if y > 0: #rhythmic unity
+            for measures in mot_bars:
+                for dur in measures:
+                    s.append(note.Note('c4', quarterLength = dur))
+            s.makeMeasures(inPlace = True)
+            return s
+        else: # random generation
+            x = 4
+            while 3 < x < 7:
+                thisbar = bars[random.randint(0, len(bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))
+                x += 1
+            if x == 7:
+                thisbar = fin_bars[random.randint(0, len(fin_bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))        
+            s.makeMeasures(inPlace = True)
+            return s
+    elif d == '3/4':
+        while x < 3:
+            thisbar = triple_bars[random.randint(0, len(triple_bars)-1)] #choose bar randomly
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if x == 3:
+            thisbar = triple_fin_bars[random.randint(0, len(triple_fin_bars)-1)]
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if y > 0: #rhythmic unity
+            for measures in mot_bars:
+                for dur in measures:
+                    s.append(note.Note('c4', quarterLength = dur))
+            s.makeMeasures(inPlace = True)
+            return s
+        else: # random generation
+            x = 4
+            while 3 < x < 7:
+                thisbar = triple_bars[random.randint(0, len(triple_bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))
+                x += 1
+            if x == 7:
+                thisbar = triple_fin_bars[random.randint(0, len(triple_fin_bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))        
+            s.makeMeasures(inPlace = True)
+            return s
+    elif d == '6/8':
+        while x < 3:
+            thisbar = compound_bars[random.randint(0, len(compound_bars)-1)] #choose bar randomly bars
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if x == 3:
+            thisbar = compound_fin_bars[random.randint(0, len(compound_fin_bars)-1)]
+            for dur in thisbar:
+                s.append(note.Note('c4', quarterLength = dur))
+            mot_bars.append(thisbar)
+            x += 1
+        if y > 0: #rhythmic unity
+            for measures in mot_bars:
+                for dur in measures:
+                    s.append(note.Note('c4', quarterLength = dur))
+            s.makeMeasures(inPlace = True)
+            return s
+        else: # random generation
+            x = 4
+            while 3 < x < 7:
+                thisbar = compound_bars[random.randint(0, len(compound_bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))
+                x += 1
+            if x == 7:
+                thisbar = compound_fin_bars[random.randint(0, len(compound_fin_bars)-1)]
+                for dur in thisbar:
+                    s.append(note.Note('c4', quarterLength = dur))        
+            s.makeMeasures(inPlace = True)
+            return s
